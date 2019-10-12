@@ -48,7 +48,7 @@ namespace StackUnderflow.Services
         public Question DeleteQuestion(string id)
         {
             var question = GetQuestionById(id);
-            if (question.AnswerId != "")
+            if (question.AnswerId != null)
             { throw new Exception("Answered Questions cannot be deleted"); }
             var deleted = _repo.DeleteQuestion(id);
             if (!deleted)

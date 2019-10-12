@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS questions
     title VARCHAR(255) NOT NULL,
     body VARCHAR(255),
     authorid VARCHAR(255) NOT NULL,
-    answerid VARCHAR(255) NOT NULL,
+    answerid VARCHAR(255),
     deleted TINYINT DEFAULT 0,
     questionadded DATETIME,
     questiondeletedat DATETIME,
@@ -74,4 +74,10 @@ CREATE TABLE IF NOT EXISTS tag_items
     PRIMARY KEY(id)
 
 );
+
+-- DROP TABLE users;
+-- DROP TABLE questions;
+-- DROP TABLE responses;
+-- DROP TABLE categories;
+-- DROP TABLE tag_items
 

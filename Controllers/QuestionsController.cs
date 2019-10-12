@@ -57,9 +57,10 @@ namespace StackUnderflow.Controllers
         {
             try
             {
-                questionData.AuthorId = HttpContext.User.FindFirst("Id").Value;
-                questionData.Id = id;
                 var question = _qs.EditQuestion(questionData);
+                questionData.AuthorId = HttpContext.User.FindFirst("Id").Value;
+                //questionData.Id = id;
+
                 return Ok(question);
             }
             catch (Exception e)
@@ -69,12 +70,13 @@ namespace StackUnderflow.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<Question> Delete(string id, [FromBody] Question questionData)
+        public ActionResult<Question> Delete(string id)
         {
             try
             {
-                questionData.AuthorId = HttpContext.User.FindFirst("Id").Value;
                 var question = _qs.DeleteQuestion(id);
+                question.AuthorId = HttpContext.User.FindFirst("Id").Value;
+
                 return Ok(question);
             }
             catch (Exception e)

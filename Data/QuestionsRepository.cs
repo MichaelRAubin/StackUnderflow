@@ -31,17 +31,14 @@ namespace StackUnderflow.Data
             );
         }
 
-        internal bool EditQuestion(Question Question)
+        internal bool EditQuestion(Question question)
         {
             var nRows = _db.Execute(@"
             UPDATE questions SET
             title = @Title,
-            body = @Body,
-            deleted = @Deleted,
-            questionadded = @QuestionAdded,
-            questiondeletedat = @QuestionDeletedAt
+            body = @Body
             WHERE id = @Id
-            ", Question);
+            ", question);
             return nRows == 1;
         }
 
@@ -55,6 +52,7 @@ namespace StackUnderflow.Data
             }
             return false;
         }
+
 
         public QuestionsRepository(IDbConnection db)
         {
