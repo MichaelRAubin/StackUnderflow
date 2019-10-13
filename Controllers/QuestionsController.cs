@@ -84,6 +84,8 @@ namespace StackUnderflow.Controllers
             }
         }
 
+        //TODO - need logic to add Category to Question
+
         [HttpDelete("{id}")]
         public ActionResult<Question> Delete(string id)
         {

@@ -63,6 +63,8 @@ namespace StackUnderflow
             services.AddTransient<QuestionsService>();
             services.AddTransient<ResponsesRepository>();
             services.AddTransient<ResponsesService>();
+            services.AddTransient<CategoriesRepository>();
+            services.AddTransient<CategoriesService>();
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options =>
