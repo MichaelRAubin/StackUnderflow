@@ -13,6 +13,7 @@ namespace StackUnderflow.Controllers
     public class QuestionsController : ControllerBase
     {
         private readonly QuestionsService _qs;
+        private readonly ResponsesService _rs;
 
         [HttpGet]
         public ActionResult<IEnumerable<Question>> Get()
@@ -28,6 +29,20 @@ namespace StackUnderflow.Controllers
             {
                 Question question = _qs.GetQuestionById(id);
                 return Ok(question);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("{id}/responses")]
+        public ActionResult<IEnumerable<Response>> GetResponses(string id)
+        {
+            try
+            {
+                return Ok(_rs.GetQuestionResponses(id));
+
             }
             catch (Exception e)
             {
@@ -85,6 +100,10 @@ namespace StackUnderflow.Controllers
             }
         }
 
-        public QuestionsController(QuestionsService qs) => _qs = qs;
+        public QuestionsController(QuestionsService qs, ResponsesService rs)
+        {
+            _qs = qs;
+            _rs = rs;
+        }
     }
 }

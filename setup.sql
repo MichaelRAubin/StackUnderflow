@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS users
 CREATE TABLE IF NOT EXISTS questions
 (
     id VARCHAR(255) NOT NULL,
-    title VARCHAR(255) NOT NULL,
+    title VARCHAR(255),
     body VARCHAR(255),
     authorid VARCHAR(255) NOT NULL,
     answerid VARCHAR(255),
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS responses
 (
     id VARCHAR(255) NOT NULL,
     body VARCHAR(255),
-    questionid VARCHAR(255) NOT NULL,
+    questionid VARCHAR(255),
     authorid VARCHAR(255) NOT NULL,
     answered TINYINT DEFAULT 0,
     responseadded DATETIME,
@@ -81,3 +81,5 @@ CREATE TABLE IF NOT EXISTS tag_items
 -- DROP TABLE categories;
 -- DROP TABLE tag_items
 
+-- ALTER questions
+-- CHANGE `title` 'title' VARCHAR(255);
