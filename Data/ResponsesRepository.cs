@@ -41,7 +41,7 @@ namespace StackUnderflow.Data
         public IEnumerable<Response> GetResponsesByQuestionId(string id)
         {
             return _db.Query<Response>(
-                "SELECT * FROM responses WHERE id = @id",
+                "SELECT * FROM responses WHERE questionid = @id",
                 new { id }
             );
         }

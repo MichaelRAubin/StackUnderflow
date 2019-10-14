@@ -72,10 +72,9 @@ namespace StackUnderflow.Controllers
         {
             try
             {
+                questionData.Id = id;
                 var question = _qs.EditQuestion(questionData);
                 questionData.AuthorId = HttpContext.User.FindFirst("Id").Value;
-                //questionData.Id = id;
-
                 return Ok(question);
             }
             catch (Exception e)

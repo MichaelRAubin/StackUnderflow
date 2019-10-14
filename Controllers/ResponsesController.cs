@@ -39,7 +39,6 @@ namespace StackUnderflow.Controllers
             {
                 responseData.AuthorId = HttpContext.User.FindFirst("Id").Value;
                 var question = _rs.EditResponse(responseData);
-
                 return Ok(question);
             }
             catch (Exception e)
