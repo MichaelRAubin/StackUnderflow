@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 using Dapper;
 using StackUnderflow.Models;
@@ -31,13 +32,25 @@ namespace StackUnderflow.Data
             ", category);
             return nRows == 1;
         }
-        //TODO Need to review for correct logic.
-        public Category AddCatToQuestion(string id)
+
+        internal bool AddCatToQuestion(string questionId, string catId)
         {
-            return _db.QueryFirstOrDefault<Category>(
-                "SELECT * FROM questions WHERE id = @id",
-                new { id }
-            );
+            var id = Guid.NewGuid().ToString();
+            var sql = @"INSERT INTO tag_items (id, questionid, catid)
+            VALUES (@id, @questionId, @catId);";
+            var x = _db.Execute(sql, new { id, questionId, catId });
+            return x == 1;
+        }
+
+        internal bool RemoveCatFromQuestion(string id)
+        {
+            var success = _db.Execute(@"DELETE FROM tag_items
+            WHERE catid = @id", new { id });
+            if (success == 1)
+            {
+                return true;
+            }
+            return false;
         }
         public Category GetCategoryById(string id)
         {

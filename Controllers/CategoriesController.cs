@@ -21,7 +21,7 @@ namespace StackUnderflow.Controllers
         {
             try
             {
-                //categoryData. = HttpContext.User.FindFirst("Id").Value; //TODO ask about this
+                //categoryData.AuthorId = HttpContext.User.FindFirst("Id").Value; //TODO ask about this
                 Category myCategory = _cs.AddCategory(categoryData);
                 return Created("api/categories/" + myCategory.Id, myCategory);
             }
@@ -39,8 +39,6 @@ namespace StackUnderflow.Controllers
             {
                 var category = _cs.EditCategory(categoryData);
                 //categoryData.AuthorId = HttpContext.User.FindFirst("Id").Value; //TODO ask about this
-
-
                 return Ok(category);
             }
             catch (Exception e)
@@ -48,22 +46,22 @@ namespace StackUnderflow.Controllers
                 return BadRequest(e.Message);
             }
         }
-        [Authorize]
-        [HttpDelete("{id}")]
-        public ActionResult<Category> Delete(string id)
-        {
-            try
-            {
-                var category = _cs.DeleteCategory(id);
-                //category.AuthorId = HttpContext.User.FindFirst("Id").Value; //TODO ask about this
+        // [Authorize]
+        // [HttpDelete("{id}")]
+        // public ActionResult<Category> Delete(string id)
+        // {
+        //     try
+        //     {
+        //         var category = _cs.DeleteCategory(id);
+        //         //category.AuthorId = HttpContext.User.FindFirst("Id").Value; //TODO ask about this
 
-                return Ok(category);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
+        //         return Ok(category);
+        //     }
+        //     catch (Exception e)
+        //     {
+        //         return BadRequest(e.Message);
+        //     }
+        // }
 
         public CategoriesController(CategoriesService cs)
         {

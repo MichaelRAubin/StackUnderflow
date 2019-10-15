@@ -22,31 +22,31 @@ namespace StackUnderflow.Services
             category.Name = categoryData.Name;
             category.CatDeletedAt = categoryData.CatDeletedAt;
             bool success = _repo.EditCategory(category);
-            if (category.AddedToQuestion == true)
-            {
-                throw new Exception("Category cannot be edited after added to question.");
-            }
-            if (!success)
-            {
-                throw new Exception("Could not edit Category");
-            }
+            // if (category. == true)
+            // {
+            //     throw new Exception("Category cannot be edited after added to question.");
+            // }
+            // if (!success)
+            // {
+            //     throw new Exception("Could not edit Category");
+            // }
             return category;
         }
 
         //TODO Need to add logic to add Category to Question.
 
-        public Category DeleteCategory(string id)
-        {
-            var category = _repo.GetCategoryById(id);
-            if (category.AddedToQuestion == true)
-            { throw new Exception("Category cannot be edited after added to question."); }
-            var deleted = _repo.DeleteCategory(id);
-            if (!deleted)
-            {
-                throw new Exception($"Could not delete category with ID {id}");
-            }
-            return category;
-        }
+        // public Category DeleteCategory(string id)
+        // {
+        //     var category = _repo.GetCategoryById(id);
+        //     if (category.AddedToQuestion == true)
+        //     { throw new Exception("Category cannot be edited after added to question."); }
+        //     var deleted = _repo.DeleteCategory(id);
+        //     if (!deleted)
+        //     {
+        //         throw new Exception($"Could not delete category with ID {id}");
+        //     }
+        //     return category;
+        // }
 
         public CategoriesService(CategoriesRepository repo)
         {

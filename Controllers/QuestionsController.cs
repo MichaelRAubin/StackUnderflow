@@ -14,6 +14,7 @@ namespace StackUnderflow.Controllers
     {
         private readonly QuestionsService _qs;
         private readonly ResponsesService _rs;
+        private readonly CategoriesService _cs;
 
         [HttpGet]
         public ActionResult<IEnumerable<Question>> Get()
@@ -102,10 +103,11 @@ namespace StackUnderflow.Controllers
             }
         }
 
-        public QuestionsController(QuestionsService qs, ResponsesService rs)
+        public QuestionsController(QuestionsService qs, ResponsesService rs, CategoriesService cs)
         {
             _qs = qs;
             _rs = rs;
+            _cs = cs;
         }
     }
 }

@@ -6,7 +6,7 @@ namespace StackUnderflow.Interfaces
     {
         string Id { get; set; }
         string Name { get; set; }
-        bool AddedToQuestion { get; set; }
+        //string Action { get; set; }
         DateTime? DateCatAdded { get; set; }
         DateTime? CatDeletedAt { get; set; }
     }
