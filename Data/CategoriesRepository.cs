@@ -33,19 +33,18 @@ namespace StackUnderflow.Data
             return nRows == 1;
         }
 
-        internal bool AddCatToQuestion(string questionId, string catId)
+        internal bool AddCatToQuestion(string categoryId)
         {
-            var id = Guid.NewGuid().ToString();
-            var sql = @"INSERT INTO tag_items (id, questionid, catid)
-            VALUES (@id, @questionId, @catId);";
-            var x = _db.Execute(sql, new { id, questionId, catId });
+            var sql = @"INSERT INTO tag_items(id, questionid, categoryid)
+            VALUES(@id, @questionId, @categoryId); ";
+            var x = _db.Execute(sql, new { categoryId });
             return x == 1;
         }
 
         internal bool RemoveCatFromQuestion(string id)
         {
             var success = _db.Execute(@"DELETE FROM tag_items
-            WHERE catid = @id", new { id });
+            WHERE categoryid = @id", new { id });
             if (success == 1)
             {
                 return true;

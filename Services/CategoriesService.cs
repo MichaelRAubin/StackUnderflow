@@ -22,14 +22,14 @@ namespace StackUnderflow.Services
             category.Name = categoryData.Name;
             category.CatDeletedAt = categoryData.CatDeletedAt;
             bool success = _repo.EditCategory(category);
-            // if (category. == true)
-            // {
-            //     throw new Exception("Category cannot be edited after added to question.");
-            // }
-            // if (!success)
-            // {
-            //     throw new Exception("Could not edit Category");
-            // }
+            if (category.AddedToQuestion == true)
+            {
+                throw new Exception("Category cannot be edited after added to question.");
+            }
+            if (!success)
+            {
+                throw new Exception("Could not edit Category");
+            }
             return category;
         }
 
