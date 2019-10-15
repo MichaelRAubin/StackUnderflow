@@ -7,7 +7,7 @@ using StackUnderflow.Services;
 
 namespace StackUnderflow.Controllers
 {
-    [Authorize]
+
     [Route("api/[controller]")]
     [ApiController]
     public class QuestionsController : ControllerBase
@@ -50,6 +50,7 @@ namespace StackUnderflow.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
 
         public ActionResult<Question> Post([FromBody] Question questionData)
@@ -65,7 +66,7 @@ namespace StackUnderflow.Controllers
                 return BadRequest(e.Message);
             }
         }
-
+        [Authorize]
         [HttpPut("{id}")]
 
         public ActionResult<Question> Put(string id, [FromBody] Question questionData)
@@ -84,7 +85,7 @@ namespace StackUnderflow.Controllers
         }
 
         //TODO - need logic to add Category to Question
-
+        [Authorize]
         [HttpDelete("{id}")]
         public ActionResult<Question> Delete(string id)
         {

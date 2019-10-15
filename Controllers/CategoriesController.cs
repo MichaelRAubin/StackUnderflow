@@ -7,14 +7,14 @@ using StackUnderflow.Services;
 
 namespace StackUnderflow.Controllers
 {
-    [Authorize]
+
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriesController : ControllerBase
     {
         private readonly CategoriesService _cs;
 
-
+        [Authorize]
         [HttpPost]
 
         public ActionResult<Category> Post([FromBody] Category categoryData)
@@ -30,7 +30,7 @@ namespace StackUnderflow.Controllers
                 return BadRequest(e.Message);
             }
         }
-
+        [Authorize]
         [HttpPut("{id}")]
 
         public ActionResult<Category> Put(string id, [FromBody] Category categoryData)
@@ -48,7 +48,7 @@ namespace StackUnderflow.Controllers
                 return BadRequest(e.Message);
             }
         }
-
+        [Authorize]
         [HttpDelete("{id}")]
         public ActionResult<Category> Delete(string id)
         {
