@@ -33,7 +33,18 @@ namespace StackUnderflow.Services
             return category;
         }
 
-        //TODO Need to add logic to add Category to Question.
+        public Cataction CatAction(Cataction catAction)
+        {
+            if (catAction.Action == "add")
+            {
+                _repo.AddCatToQuestion(catAction.CategoryId, catAction.QuestionId);
+            }
+            if (catAction.Action == "remove")
+            {
+                _repo.RemoveCatFromQuestion(catAction.CategoryId);
+            }
+            return catAction;
+        }
 
         // public Category DeleteCategory(string id)
         // {

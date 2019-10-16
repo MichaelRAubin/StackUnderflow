@@ -85,7 +85,24 @@ namespace StackUnderflow.Controllers
             }
         }
 
-        //TODO - need logic to add Category to Question
+        [Authorize]
+        [HttpPut("{id}/categories")]
+
+        public ActionResult<Cataction> Put(string id, [FromBody] Cataction catActionData)
+        {
+            try
+            {
+                catActionData.QuestionId = id;
+                var Cataction = _cs.CatAction(catActionData);
+                //catAction.AuthorId = HttpContext.User.FindFirst("Id").Value;
+                return Ok(Cataction);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
         [Authorize]
         [HttpDelete("{id}")]
         public ActionResult<Question> Delete(string id)

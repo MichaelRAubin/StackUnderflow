@@ -33,11 +33,12 @@ namespace StackUnderflow.Data
             return nRows == 1;
         }
 
-        internal bool AddCatToQuestion(string categoryId)
+        internal bool AddCatToQuestion(string categoryId, string questionId)
         {
+            var id = Guid.NewGuid().ToString();
             var sql = @"INSERT INTO tag_items(id, questionid, categoryid)
-            VALUES(@id, @questionId, @categoryId); ";
-            var x = _db.Execute(sql, new { categoryId });
+            VALUES(@Id, @QuestionId, @CategoryId);";
+            var x = _db.Execute(sql, new { id, categoryId, questionId });
             return x == 1;
         }
 
