@@ -21,15 +21,16 @@ namespace StackUnderflow.Services
             var category = _repo.GetCategoryById(categoryData.Id);
             category.Name = categoryData.Name;
             category.CatDeletedAt = categoryData.CatDeletedAt;
+            category.DateCatAdded = categoryData.DateCatAdded;
             bool success = _repo.EditCategory(category);
-            if (category.AddedToQuestion == true)
-            {
-                throw new Exception("Category cannot be edited after added to question.");
-            }
-            if (!success)
-            {
-                throw new Exception("Could not edit Category");
-            }
+            // if (category.DateCatAdded != null || category.AddedToQuestion == true)
+            // {
+            //     throw new Exception("Category cannot be edited after added to question.");
+            // }
+            // if (!success)
+            // {
+            //     throw new Exception("Could not edit Category");
+            // }
             return category;
         }
 
@@ -37,7 +38,9 @@ namespace StackUnderflow.Services
         {
             if (catAction.Action == "add")
             {
-                _repo.AddCatToQuestion(catAction.CategoryId, catAction.QuestionId);
+                catAction.AddedToQuestion = true;
+                _repo.AddCatToQuestion(catAction.CategoryId, catAction.QuestionId, catAction.AddedToQuestion);
+
             }
             if (catAction.Action == "remove")
             {
@@ -45,19 +48,6 @@ namespace StackUnderflow.Services
             }
             return catAction;
         }
-
-        // public Category DeleteCategory(string id)
-        // {
-        //     var category = _repo.GetCategoryById(id);
-        //     if (category.AddedToQuestion == true)
-        //     { throw new Exception("Category cannot be edited after added to question."); }
-        //     var deleted = _repo.DeleteCategory(id);
-        //     if (!deleted)
-        //     {
-        //         throw new Exception($"Could not delete category with ID {id}");
-        //     }
-        //     return category;
-        // }
 
         public CategoriesService(CategoriesRepository repo)
         {

@@ -59,6 +59,7 @@
 --     id VARCHAR(255) NOT NULL,
 --     questionid VARCHAR(255) NOT NULL,
 --     categoryid VARCHAR(255) NOT NULL,
+--     addedtoquestion TINYINT DEFAULT 0,
 
 --     FOREIGN KEY (questionid)
 --         REFERENCES questions(id),

@@ -46,22 +46,6 @@ namespace StackUnderflow.Controllers
                 return BadRequest(e.Message);
             }
         }
-        // [Authorize]
-        // [HttpDelete("{id}")]
-        // public ActionResult<Category> Delete(string id)
-        // {
-        //     try
-        //     {
-        //         var category = _cs.DeleteCategory(id);
-        //         //category.AuthorId = HttpContext.User.FindFirst("Id").Value; //TODO ask about this
-
-        //         return Ok(category);
-        //     }
-        //     catch (Exception e)
-        //     {
-        //         return BadRequest(e.Message);
-        //     }
-        // }
 
         public CategoriesController(CategoriesService cs)
         {

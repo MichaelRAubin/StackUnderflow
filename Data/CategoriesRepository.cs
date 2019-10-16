@@ -14,8 +14,8 @@ namespace StackUnderflow.Data
         public Category Create(Category categoryData)
         {
             var sql = @"INSERT INTO categories
-            (id, name, addedtoquestion, datecatadded)
-            VALUES (@Id, @Name, @AddedToQuestion, @DateCatAdded);";
+            (id, name, datecatadded)
+            VALUES (@Id, @Name, @DateCatAdded);";
             var x = _db.Execute(sql, categoryData);
             return categoryData;
         }
@@ -25,7 +25,6 @@ namespace StackUnderflow.Data
             var nRows = _db.Execute(@"
             UPDATE categories SET
             name = @Name,
-            addedtoquestion = @AddedToQuestion,
             datecatadded = @DateCatAdded,
             catdeletedat = @CatDeletedAt
             WHERE id = @Id
@@ -33,12 +32,22 @@ namespace StackUnderflow.Data
             return nRows == 1;
         }
 
-        internal bool AddCatToQuestion(string categoryId, string questionId)
+        internal bool MarkAsAdded(Cataction cataction)
+        {
+            var nRows = _db.Execute(@"
+            UPDATE categories SET
+            addedtoquestion = @AddedToQuestion
+            WHERE id = @Id
+            ", cataction);
+            return nRows == 1;
+        }
+
+        internal bool AddCatToQuestion(string categoryId, string questionId, bool addedToQuestion)
         {
             var id = Guid.NewGuid().ToString();
-            var sql = @"INSERT INTO tag_items(id, questionid, categoryid)
-            VALUES(@Id, @QuestionId, @CategoryId);";
-            var x = _db.Execute(sql, new { id, categoryId, questionId });
+            var sql = @"INSERT INTO tag_items(id, questionid, categoryid, addedtoquestion)
+            VALUES(@Id, @QuestionId, @CategoryId, @AddedToQuestion);";
+            var x = _db.Execute(sql, new { id, categoryId, questionId, addedToQuestion });
             return x == 1;
         }
 
