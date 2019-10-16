@@ -16,21 +16,30 @@ namespace StackUnderflow.Services
             return categoryData;
         }
 
+        // public Category EditCategory(Category categoryData)
+        // {
+        //     var category = _repo.GetCategoryById(categoryData.Id);
+        //     category.Name = categoryData.Name;
+        //     category.CatDeletedAt = categoryData.CatDeletedAt;
+        //     category.DateCatAdded = categoryData.DateCatAdded;
+        //     bool success = _repo.EditCategory(category);
+        //     if (category.DateCatAdded != null || category. == true)
+        //     {
+        //         throw new Exception("Category cannot be edited after added to question.");
+        //     }
+        //     if (!success)
+        //     {
+        //         throw new Exception("Could not edit Category");
+        //     }
+        //     return category;
+        // }
+
         public Category EditCategory(Category categoryData)
         {
             var category = _repo.GetCategoryById(categoryData.Id);
-            category.Name = categoryData.Name;
-            category.CatDeletedAt = categoryData.CatDeletedAt;
-            category.DateCatAdded = categoryData.DateCatAdded;
+            if (category.DateCatAdded != null)
+            { throw new Exception("Category cannot be editied"); }
             bool success = _repo.EditCategory(category);
-            // if (category.DateCatAdded != null || category.AddedToQuestion == true)
-            // {
-            //     throw new Exception("Category cannot be edited after added to question.");
-            // }
-            // if (!success)
-            // {
-            //     throw new Exception("Could not edit Category");
-            // }
             return category;
         }
 
