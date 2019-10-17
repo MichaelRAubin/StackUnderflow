@@ -21,7 +21,6 @@ namespace StackUnderflow.Controllers
         {
             try
             {
-                //categoryData.AuthorId = HttpContext.User.FindFirst("Id").Value; //TODO ask about this
                 Category myCategory = _cs.AddCategory(categoryData);
                 return Created("api/categories/" + myCategory.Id, myCategory);
             }
@@ -38,7 +37,6 @@ namespace StackUnderflow.Controllers
             try
             {
                 var category = _cs.EditCategory(categoryData);
-                //categoryData.AuthorId = HttpContext.User.FindFirst("Id").Value; //TODO ask about this
                 return Ok(category);
             }
             catch (Exception e)

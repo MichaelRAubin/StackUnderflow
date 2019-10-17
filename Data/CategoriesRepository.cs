@@ -77,13 +77,6 @@ namespace StackUnderflow.Data
             );
         }
 
-
-        //     var sql = @"SELECT * FROM order_items oi
-        //         JOIN products p ON p.id = oi.itemid
-        //         WHERE oi.orderid = @orderId";
-        //         return _db.Query<Product>(sql, new { orderId
-        // }).AsList();
-
         internal bool DeleteCategory(string id)
         {
             var success = _db.Execute(@"DELETE FROM categories

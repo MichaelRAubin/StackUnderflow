@@ -16,23 +16,6 @@ namespace StackUnderflow.Services
             return categoryData;
         }
 
-        // public Category EditCategory(Category categoryData)
-        // {
-        //     var category = _repo.GetCategoryById(categoryData.Id);
-        //     category.Name = categoryData.Name;
-        //     category.CatDeletedAt = categoryData.CatDeletedAt;
-        //     category.DateCatAdded = categoryData.DateCatAdded;
-        //     bool success = _repo.EditCategory(category);
-        //     if (category.DateCatAdded != null || category. == true)
-        //     {
-        //         throw new Exception("Category cannot be edited after added to question.");
-        //     }
-        //     if (!success)
-        //     {
-        //         throw new Exception("Could not edit Category");
-        //     }
-        //     return category;
-        // }
 
         public Category EditCategory(Category categoryData)
         {
@@ -41,14 +24,13 @@ namespace StackUnderflow.Services
             {
                 throw new Exception("cannot edit Category");
             }
-
-
-
             var category = _repo.GetCategoryById(categoryData.Id);
             category.Name = categoryData.Name;
-            // if (category.DateCatAdded != null)
-            // { throw new Exception("Category cannot be editied"); }
             bool success = _repo.EditCategory(category);
+            if (!success)
+            {
+                throw new Exception("Could not edit review");
+            }
             return category;
         }
 

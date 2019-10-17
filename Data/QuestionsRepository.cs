@@ -30,7 +30,7 @@ namespace StackUnderflow.Data
                 new { id }
             );
         }
-        //TODO need to update once categories are enabled
+
         internal bool EditQuestion(Question question)
         {
             var nRows = _db.Execute(@"

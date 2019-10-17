@@ -74,9 +74,9 @@ namespace StackUnderflow.Controllers
         {
             try
             {
+                questionData.AuthorId = HttpContext.User.FindFirst("Id").Value;
                 questionData.Id = id;
                 var question = _qs.EditQuestion(questionData);
-                questionData.AuthorId = HttpContext.User.FindFirst("Id").Value;
                 return Ok(question);
             }
             catch (Exception e)
@@ -94,7 +94,6 @@ namespace StackUnderflow.Controllers
             {
                 catActionData.QuestionId = id;
                 var Cataction = _cs.CatAction(catActionData);
-                //catAction.AuthorId = HttpContext.User.FindFirst("Id").Value;
                 return Ok(Cataction);
             }
             catch (Exception e)
