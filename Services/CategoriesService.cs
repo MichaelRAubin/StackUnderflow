@@ -36,9 +36,18 @@ namespace StackUnderflow.Services
 
         public Category EditCategory(Category categoryData)
         {
+            var tag = _repo.GetCatActionById(categoryData.Id);//TODO find cataction by its categoryId
+            if (tag != null)
+            {
+                throw new Exception("cannot edit Category");
+            }
+
+
+
             var category = _repo.GetCategoryById(categoryData.Id);
-            if (category.DateCatAdded != null)
-            { throw new Exception("Category cannot be editied"); }
+            category.Name = categoryData.Name;
+            // if (category.DateCatAdded != null)
+            // { throw new Exception("Category cannot be editied"); }
             bool success = _repo.EditCategory(category);
             return category;
         }

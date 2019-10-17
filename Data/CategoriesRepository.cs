@@ -61,20 +61,20 @@ namespace StackUnderflow.Data
             }
             return false;
         }
-        // public Category GetCategoryById(string id)
-        // {
-        //     return _db.QueryFirstOrDefault<Category>(
-        //         "SELECT * FROM categories WHERE id = @id",
-        //         new { id }
-        //     );
-        // }
-
         public Category GetCategoryById(string id)
         {
-            return _db.QueryFirstOrDefault<Category>(@"SELECT * FROM categories c
-            JOIN tag_items ti ON c.id = ti.categoryid
-            WHERE c.id = @id", new { id });
+            return _db.QueryFirstOrDefault<Category>(
+                "SELECT * FROM categories WHERE id = @id",
+                new { id }
+            );
+        }
 
+        public Category GetCatActionById(string id)
+        {
+            return _db.QueryFirstOrDefault<Category>(
+                "SELECT * FROM tag_items WHERE categoryid = @id",
+                new { id }
+            );
         }
 
 
